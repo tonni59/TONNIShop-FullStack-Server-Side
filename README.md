@@ -423,7 +423,7 @@ GET /api/products/64fd0e23c82e19c88a5c9f12
 }
 
   ```
-## Sample Response
+ Sample Response
 ```bash
 {
   "_id": "64fd125ac82e19c88a5ca199",

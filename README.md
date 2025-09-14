@@ -268,7 +268,7 @@ The backend of QuickCart E-commerce Website is built with Node.js + Express + Mo
 ## POST /api/users/login
 ## Login with email and password.
 
-## Sample Request
+Sample Request
 ```bash
    POST /api/users/login
    Content-Type: application/json
@@ -279,7 +279,7 @@ The backend of QuickCart E-commerce Website is built with Node.js + Express + Mo
    }
 
   ```
-## Sample Response
+Sample Response
 ```bash
    {
   "_id": "64fd0cddc82e19c88a5c9e123",
@@ -295,7 +295,7 @@ The backend of QuickCart E-commerce Website is built with Node.js + Express + Mo
 
 ## GET/api/products
 ## Fetch all products.
-## Sample Response
+Sample Response
 ```bash
    [
   {
@@ -319,12 +319,12 @@ The backend of QuickCart E-commerce Website is built with Node.js + Express + Mo
  ```
 ## GET/api/products/:id
 ## Fetch a single product by ID.
-## Sample Request
+Sample Request
 ```bash
 GET /api/products/64fd0e23c82e19c88a5c9f12
 
  ```
-## Sample Response
+Sample Response
 ```bash
    {
   "_id": "64fd0e23c82e19c88a5c9f12",
@@ -339,7 +339,7 @@ GET /api/products/64fd0e23c82e19c88a5c9f12
  ```
 ## POST/api/products (Admin Only)
 ## Create a new product.
-## Sample Request
+Sample Request
 ```bash
  {
   "name": "MacBook Pro",
@@ -350,7 +350,7 @@ GET /api/products/64fd0e23c82e19c88a5c9f12
   "countInStock": 5
 }
 ```
-## Sample Response
+Sample Response
 ```bash
  {
   "_id": "64fd10aac82e19c88a5ca055",
@@ -365,7 +365,7 @@ GET /api/products/64fd0e23c82e19c88a5c9f12
 ```
 ## PUT/api/products (Admin Only)
 ## Update an existing product.
-## Sample Request
+Sample Request
 ```bash
  PUT /api/products/64fd10aac82e19c88a5ca055
 {
@@ -373,7 +373,7 @@ GET /api/products/64fd0e23c82e19c88a5c9f12
   "countInStock": 8
 }
 ```
-## Sample Response
+Sample Response
 ```bash
 {
   "_id": "64fd10aac82e19c88a5ca055",
@@ -388,11 +388,11 @@ GET /api/products/64fd0e23c82e19c88a5c9f12
 ```
 ## DELETE/api/products (Admin Only)
 ## Delete a product.
-## Sample Request
+Sample Request
 ```bash
  DELETE /api/products/64fd10aac82e19c88a5ca055
 ```
-## Sample Response
+Sample Response
 ```bash
 { "message": "Product removed" }
 ```
@@ -401,7 +401,7 @@ GET /api/products/64fd0e23c82e19c88a5c9f12
 ## POST /api/orders
 ## create a new order.
 
-## Sample Request
+Sample Request
 ```bash
   {
   "orderItems": [
@@ -423,7 +423,7 @@ GET /api/products/64fd0e23c82e19c88a5c9f12
 }
 
   ```
- Sample Response
+Sample Response
 ```bash
 {
   "_id": "64fd125ac82e19c88a5ca199",
@@ -439,5 +439,40 @@ GET /api/products/64fd0e23c82e19c88a5c9f12
   "isDelivered": false,
   "user": "64fd0cddc82e19c88a5c9e123"
 }
+
+   ```
+
+
+## 🧪 Testing APIs
+## ✅ Using Postman
+- Import your API routes (/api/...) into Postman.
+- Import your API routes (/api/...) into Postman.
+- Add Content-Type: application/json header.
+
+## ✅ Using cURL
+POST login
+```bash
+curl -X POST http://localhost:5000/api/users/login \
+-H "Content-Type: application/json" \
+-d '{"email":"admin@example.com","password":"password123"}'
+
+   ```
+GET products
+```bash
+curl http://localhost:5000/api/products
+
+   ```
+PUT update product
+```bash
+curl -X PUT http://localhost:5000/api/products/64fd10aac82e19c88a5ca055 \
+-H "Content-Type: application/json" \
+-H "Authorization: Bearer <token>" \
+-d '{"price":2299,"countInStock":8}'
+
+   ```
+DELETE products
+```bash
+curl -X DELETE http://localhost:5000/api/products/64fd10aac82e19c88a5ca055 \
+-H "Authorization: Bearer <token>"
 
    ```

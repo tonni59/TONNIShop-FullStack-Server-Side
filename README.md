@@ -253,5 +253,191 @@ uploads/ (image uploads)
     "vite": "^6.0.5"
   }
 }
+```
 using cloud storage for uploads (S3), add rate-limiting, input validation, and stronger security settings.
 
+
+
+
+## 📡 API Documentation
+
+The backend of QuickCart E-commerce Website is built with Node.js + Express + MongoDB and exposes a RESTful API for handling authentication, products, orders, and user management.
+
+## 🔑 Authentication
+
+## POST /api/users/login
+## Login with email and password.
+
+## Sample Request
+```bash
+   POST /api/users/login
+   Content-Type: application/json
+
+   {
+     "email": "admin@example.com",
+     "password": "password123"
+   }
+
+  ```
+## Sample Response
+```bash
+   {
+  "_id": "64fd0cddc82e19c88a5c9e123",
+  "name": "John Doe",
+  "email": "john@example.com",
+  "isAdmin": false,
+  "token": "jwt_token_here"
+}
+
+   ```
+
+## 📦 Products
+
+## GET/api/products
+## Fetch all products.
+## Sample Response
+```bash
+   [
+  {
+    "_id": "64fd0e23c82e19c88a5c9f12",
+    "name": "iPhone 15",
+    "brand": "Apple",
+    "category": "Smartphones",
+    "price": 1299,
+    "countInStock": 15
+  },
+  {
+    "_id": "64fd0e9ac82e19c88a5c9f22",
+    "name": "Nike Air Max",
+    "brand": "Nike",
+    "category": "Shoes",
+    "price": 199,
+    "countInStock": 40
+  }
+]
+
+ ```
+## GET/api/products/:id
+## Fetch a single product by ID.
+## Sample Request
+```bash
+GET /api/products/64fd0e23c82e19c88a5c9f12
+
+ ```
+## Sample Response
+```bash
+   {
+  "_id": "64fd0e23c82e19c88a5c9f12",
+  "name": "iPhone 15",
+  "brand": "Apple",
+  "category": "Smartphones",
+  "price": 1299,
+  "countInStock": 15,
+  "description": "Latest Apple smartphone with A17 chip"
+}
+
+ ```
+## POST/api/products (Admin Only)
+## Create a new product.
+## Sample Request
+```bash
+ {
+  "name": "MacBook Pro",
+  "brand": "Apple",
+  "category": "Laptops",
+  "description": "M2 Pro Chip, 16GB RAM",
+  "price": 2499,
+  "countInStock": 5
+}
+```
+## Sample Response
+```bash
+ {
+  "_id": "64fd10aac82e19c88a5ca055",
+  "name": "MacBook Pro",
+  "brand": "Apple",
+  "category": "Laptops",
+  "description": "M2 Pro Chip, 16GB RAM",
+  "price": 2499,
+  "countInStock": 5,
+  "user": "64fd0b9c82e19c88a5c9e999"
+}
+```
+## PUT/api/products (Admin Only)
+## Update an existing product.
+## Sample Request
+```bash
+ PUT /api/products/64fd10aac82e19c88a5ca055
+{
+  "price": 2299,
+  "countInStock": 8
+}
+```
+## Sample Response
+```bash
+{
+  "_id": "64fd10aac82e19c88a5ca055",
+  "name": "MacBook Pro",
+  "brand": "Apple",
+  "category": "Laptops",
+  "description": "M2 Pro Chip, 16GB RAM",
+  "price": 2299,
+  "countInStock": 8,
+  "user": "64fd0b9c82e19c88a5c9e999"
+}
+```
+## DELETE/api/products (Admin Only)
+## Delete a product.
+## Sample Request
+```bash
+ DELETE /api/products/64fd10aac82e19c88a5ca055
+```
+## Sample Response
+```bash
+{ "message": "Product removed" }
+```
+## 🛒 Orders
+
+## POST /api/orders
+## create a new order.
+
+## Sample Request
+```bash
+  {
+  "orderItems": [
+    {
+      "product": "64fd0e23c82e19c88a5c9f12",
+      "qty": 2
+    }
+  ],
+  "shippingAddress": {
+    "address": "123 Street",
+    "city": "Dhaka",
+    "postalCode": "1212",
+    "country": "Bangladesh"
+  },
+  "paymentMethod": "PayPal",
+  "itemsPrice": 2598,
+  "shippingPrice": 50,
+  "totalPrice": 2648
+}
+
+  ```
+## Sample Response
+```bash
+{
+  "_id": "64fd125ac82e19c88a5ca199",
+  "orderItems": [
+    {
+      "product": "64fd0e23c82e19c88a5c9f12",
+      "qty": 2
+    }
+  ],
+  "paymentMethod": "PayPal",
+  "totalPrice": 2648,
+  "isPaid": false,
+  "isDelivered": false,
+  "user": "64fd0cddc82e19c88a5c9e123"
+}
+
+   ```

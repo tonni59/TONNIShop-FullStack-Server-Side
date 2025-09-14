@@ -476,3 +476,7 @@ curl -X DELETE http://localhost:5000/api/products/64fd10aac82e19c88a5ca055 \
 -H "Authorization: Bearer <token>"
 
    ```
+## 📜 License
+This project is licensed under the MIT License.
+## 📬 Contact
+For queries or feedback, reach out via me.
